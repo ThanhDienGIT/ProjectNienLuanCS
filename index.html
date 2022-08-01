@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nien luan</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./jquery-3.6.0.min.js"></script>
+    <script src="./jquery-function.js"></script>
+    <link rel="stylesheet" href="./fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;1,400;1,500&display=swap" rel="stylesheet">   
+</head>
+<body>
+
+        <!-- Header -->
+        <header class="header"> 
+            <h2 class="header-text">
+                BÀI TOÁN TÌM CÂY PHỦ TỐI TIỂU TRÊN ĐỒ THỊ
+                    DÙNG THUẬT TOÁN PRIME
+            </h2>
+        </header>
+        <!-- Content -->
+        <div class="content" >
+                <!-- Khung trái -->
+                <div class="left">
+                  <div class="left-button">
+                    <button class="button" id="create-node" onclick="TestNode()" value=0><i class="fas fa-plus"></i></button>
+                    <button class="button" id="create-edge" onclick="TestEdge()" value=1><i class="fas fa-draw-polygon"></i></button>
+                    <button class="button" id="delete-node" onclick="Testdeletenode()" value=2><i class="fas fa-minus-circle"></i></button>
+                    <button class="button" id="delete-edge" onclick="Testdeletedge()" value=3><i class="fas fa-eraser"></i></button>
+             
+              
+                    <button class="button" id="prim" onclick="Testprim()" value=4><i class="fab fa-pinterest-p"></i></button> 
+                    <button class="button" id="save-file" onclick="TestSavefile()" value=5><i class="fas fa-cloud-download-alt"></i></button>
+                    <button class="button" id="delete-all" onclick="Testdeleteall()" value=6><i class="fas fa-trash"></i></button>
+                    <button class="button" id="upload-file" onclick="Testuploadfile()" ><i class="fas fa-cloud-upload-alt"> </i> </button>
+
+                    <input id="file-selector" type="file" >
+                  </div>   
+                    <div class="function">
+                        <p class="function-text" >Tạo nút</p>
+                        <p class="function-text">Tạo cung</p>
+                        <p class="function-text">Xóa nút</p>
+                        <p class="function-text">Xóa cung</p>
+                      
+                        <p class="function-text">Prim</p>
+                        <p class="function-text">Lưu file</p>
+                        <p class="function-text">Xóa tất cả</p>
+                        <p class="function-text">Tải file</p>
+                    </div>
+                     <input type="text" name="value-edge" id="value-edge" placeholder="Nhập giá trị cung"> 
+                     
+                </div>
+
+
+                <!-- Khung phải -->
+                <div class="right">
+                    <!-- Khung nút -->
+                    <div class="graph-frame" >
+                    
+                      <!-- Nút  class = node-->
+                          
+                        <!-- EDGE class = edge -->
+                        
+                    </div>
+                </div>
+               <div class="value-div ">
+                <p class="text">Value:</p>
+                <div class="sum_w">
+                </div>  
+               </div>
+               
+        </div>
+     
+
+        <footer class="information">
+          <div class="name-information">
+            <p class="information-text">Họ Tên : Nguyễn Trần Thanh Điền &shy; |</p>
+            <p class="information-text"> MSSV : B1805751 &shy; |</p>
+            <p class="information-text">Email: dienB1805751@student.ctu.edu.vn &shy; |</p>
+          </div>
+          
+          <div class="content-instructions">
+            <h1 class="header">Hướng dẫn sử dụng</h1> 
+            <br>
+             <p class="chucnang"> &emsp; <b>Các chức năng </b>   :</p> <br>
+             <p class="text-instructions">
+              <i class="fas fa-plus alo"></i>  &shy; &shy; tạo nút : Click vào icon như hình bên để icon đổi màu là lúc đó chức năng đang sẵn sàng và click vào khung Graph để tạo các đỉnh với tọa độ mong muốn.
+             </p>
+            <!--  -->
+            <br>
+             <p class="text-instructions">
+              <i class="fas fa-draw-polygon alo"></i>&shy; &shy; tạo cung : Click vào icon như hình bên để icon đổi màu lúc đó chức năng đang sẵn sàng và click vào 2 đỉnh cần tạo cung để thêm cung.
+             </p>
+            <!--  -->
+            <br>  
+             <p class="text-instructions">
+              <i class="fas fa-minus-circle alo"></i> &shy; &shy; xóa nút : Click vào icon như hình bên để icon đổi màu lúc đó chức năng đang sẵn sàng và chọn đỉnh cần xóa. <br>
+              &shy;   &shy;  Lưu ý : Sau khi xóa đỉnh tất cả cung của đỉnh đó cũng sẽ bị xóa.
+            </p>
+            <!--  -->
+            <br>
+            <p class="text-instructions">
+              <i class="fab fa-pinterest-p alo"></i>  &shy; &shy; Prim : Click vào nút này để sử dụng chức năng chính là sẽ vẽ các đường được tô màu lại những đường này là những đường có giá trị nhỏ nhất và tổng chi phí sẽ được hiển thị ở bên phải  &shy; &shy; khung graph.
+            </p>
+              <!--  -->
+              <br>
+            <p class="text-instructions">
+              <i class="fas fa-cloud-download-alt alo"></i>&shy; &shy; Lưu file : click vào để lưu lại kết quả  dạng tập tin .txt
+            </p>
+               <!--  -->
+               <br>
+            <p class="text-instructions">
+              <i class="fas fa-trash alo"></i>&shy; &shy; Xóa tất cả : click vào đây để xóa toàn bộ bao gồm nút đỉnh...!
+            </p>
+             <!--  -->
+             <br>
+            <p class="text-instructions">
+              <i class="fas fa-cloud-upload-alt alo"></i> &shy; &shy; Tải file : click vào để upload lên tập tin .txt để có thể sử dụng. 
+            </p>    <!--  -->
+            
+            </div>
+       <br>
+       <div class="khung">
+        <div class="huongdantongquat">
+          <h2 class="tongquat">Cách sử dụng gồm 4 bước:</h2>
+          <div class="text-instructions-div">
+            <p class="text-instructions ola">
+            <div class="x"><i class="fas fa-plus alo"></i>    &shy;  Tạo nút </div>  
+            <div class="x"><i class="fas fa-draw-polygon alo"></i> &shy;   Tạo cung</div> 
+            <div class="x"><i class="fas fa-bezier-curve alo"></i>  &shy; Nhập giá trị cung</div>      
+            <div class="x"> <i class="fab fa-pinterest-p alo"></i>  &shy; Prim</div> 
+           </p>
+        </div>
+        <br>
+    <p>    &shy; Sau khi chúng ta đã có được kết quả mong muốn sau 3 bước trên ta có thể sử dụng chức năng lưu file để lưu lại kết quả chúng ta cần , Để có thể nhanh chóng và tiện lợi thì ta có thể upload lên 1 file với thông tin thông số cài đặt sẵn ta có thể update lên và sử dụng ngay mà không cần tốn nhiều thời gian để xây dựng lại dự án bằng chức năng tải file.  </p>
+      </div>
+       </div>
+            
+     
+
+        </footer>
+        <style>
+          #file-selector{
+            display: none;
+          }
+          .x{
+            display: flex;
+            margin-top: 10px;
+          }
+          .ola{
+           position: relative;
+           left:245px;
+           display: flex;
+           flex-direction: column;
+          }
+       
+          .huongdantongquat{
+          
+            font-size: 30px;
+          
+          }
+          .chucnang{
+            font-size: 25;
+          }
+          .tongquat{
+            margin-left: 25px;
+            font-size: 25px;
+          }
+          .information{
+            background-color:#202e3e;
+            height: 990px;
+            width: 100%;
+          }
+          .name-information{
+              width: 100%;
+              height: 35px;
+                  display: flex;
+          }
+          .information-text{
+            margin-left: 15px;
+            margin-top: 5px;
+          }
+          .alo{
+            border: 1px solid white;
+            border-radius:100% ;
+            height: 35px;
+            width: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            color:#202e3e ;
+            margin-left: 10px;
+           
+          }
+          .text-instructions{
+            display: flex;
+          }
+        </style>
+
+
+
+
+        
+        <!-- Add script -->
+        <script src="./jsnew.js"></script>
+        <!-- Xữ lý node -->
+        <script>
+
+       var  DSnode =[];
+       var  DSedge =[];
+       // Hàm di chuyển
+         function Dragnode(){
+           // di chuyển
+           $('.node').draggable({
+            containment : 'parent',
+              // sự kiện bắt đầu kéo.
+            start: function(e){           
+              if(DSnode.length !=1){
+                  if(Arraynode[e.target.innerText-1].id == e.target.innerText){
+                    DSnode.push(Arraynode[e.target.innerText-1]);
+                  }
+               }
+               console.log(DSnode); 
+               for(i=0;i<Arrayedge.length;i++){
+                  if(Arrayedge[i].node1.id == DSnode[0].id){
+                    DSedge.push(Arrayedge[i]);
+                  }else{
+                    if(Arrayedge[i].node2.id == DSnode[0].id){
+                    DSedge.push(Arrayedge[i]);
+                  }
+                  }
+               }
+              },
+              // Sự kiện đang kéo
+            drag : function(e){   
+                Arraynode.forEach(Element=>{
+                  if(Element.id == DSnode[0].id){
+                      Element.x = e.target.getBoundingClientRect().left + (e.target.clientWidth/2);
+                      Element.y =e.target.getBoundingClientRect().top + (e.target.clientHeight/2);
+                  }
+                })            
+                DSedge.forEach(Element=>{ 
+                  let Edgedrag = document.getElementsByClassName("edge")[Element.id-1];
+                    if(Element.node1.id == DSnode[0].id){
+                      node = Element.node2;
+                    }else{     
+                    node = Element.node1;
+                    } 
+                    x2 = e.target.getBoundingClientRect().left + (e.target.clientWidth/2)-340;
+                    y2 = e.target.getBoundingClientRect().top + (e.target.clientHeight/2)-120;
+                    x1 = node.x-340;
+                    y1 = node.y-120;
+                    let LengthEdge = Math.sqrt(Math.pow(x2-x1,2) + Math.pow(y2-y1,2))-35 ;
+                    Edgedrag.style.width= LengthEdge + "px";
+                    let x = (x2+x1+48)/2 - LengthEdge/2;
+                    let y = (y2+y1+40)/2 ; 
+                    Edgedrag.style.left =x+'px';
+                    Edgedrag.style.top  =y+'px';
+                    let radiustest;
+                      if(x2 > x1 ){
+                      radiustest =true;
+                    }else{
+                      radiustest=false
+                    }
+                    if(radiustest==true){
+                      radius = Math.atan2(x1-x2,y1-y2);
+                    }else{
+                      radius = Math.atan2(x2-x1,y2-y1);
+                    }            
+                     rot = (radius * (180/Math.PI) *-1) + 270 ;
+                     Edgedrag.style.transform = "rotate("+rot+"deg)"
+                  });
+
+               
+
+              },
+              //  sự kiện kết thúc
+            stop: function(){
+                  DSnode.shift()
+                  DSedge.length=0;
+            }
+            
+           });
+         }
+         window.addEventListener('click',Dragnode);
+        
+        
+         /*Ghi file*/
+          var textFile = null,
+          makeTextFile = function (text) {
+              var data = new Blob([text], { type: 'text/plain' });
+              // If we are replacing a previously generated file we need to
+              // manually revoke the object URL to avoid memory leaks.
+              if (textFile !== null) {
+                  window.URL.revokeObjectURL(textFile);
+              }
+              textFile = window.URL.createObjectURL(data);
+              // returns a URL you can use as a href
+              return textFile;
+          };
+          
+          //Nút ghi file
+        
+          var create = document.getElementById('save-file');
+          //Sự kiện nhấn ghi file
+          create.addEventListener('click', function () {
+          //Chuỗi lưu đỉnh và cung
+          let strFile = JSON.stringify(Arraynode) + '\n' + JSON.stringify(Arrayedge);
+          
+          let link = document.createElement('a');
+          link.setAttribute('download', 'prim.txt');
+          link.href = makeTextFile(strFile);
+          document.body.appendChild(link);
+          
+          // wait for the link to be added to the document
+          window.requestAnimationFrame(function () {
+              var event = new MouseEvent('click');
+              link.dispatchEvent(event);
+              document.body.removeChild(link);
+          });
+          
+          }, false);
+  
+  
+  
+          const fileSelector = document.getElementById('file-selector');
+          fileSelector.addEventListener('change', (event) => {
+              const fileList = event.target.files;
+          });
+          
+          // Khởi tạo đối tượng FileReader
+          const reader = new FileReader();
+          // Lắng nghe trạng thái đăng tải tệp
+          fileSelector.addEventListener("change", (event) => {
+          
+              // Lấy thông tin tập tin được đăng tải
+              var files = event.target.files;
+              // Lắng nghe quá trình đọc tập tin hoàn thành
+              reader.addEventListener("load", (e) => {
+                  let text = reader.result
+                  if (text !== '') {
+                  
+                      //Tạo cái mảng giữa những ký tự \n
+                      let arr = text.split('\n');
+                      //Gia ma
+                      Arraynode = JSON.parse(arr[0]);
+                      Arrayedge = JSON.parse(arr[1]); 
+                      //Tao node cua html
+                      for(i=0;i<Arraynode.length;i++){
+                        let text = document.createElement("p");
+                        text.setAttribute("class","text-node");
+                        text.innerHTML = Arraynode[i].id;
+                        let div  = document.createElement("div");
+                        div.setAttribute("class","node");
+                        let x = Arraynode[i].x;  
+                        let y =  Arraynode[i].y;
+                        div.style.left = -333 + x + 'px'; 
+                        div.style.top =  -116 + y +'px';
+                        parent.appendChild(div);
+                        div.appendChild(text);
+                      }
+                    
+                      for(o=0;o<Arrayedge.length;o++){
+                        var edge = document.createElement("div");
+                        edge.setAttribute("class","edge");
+                        edge.object = {
+                          id : Arrayedge[o].id,
+                          node1 : Arrayedge[o].node1,
+                          node2 : Arrayedge[o].node2}
+                        parent.appendChild(edge);
+                        // tọa độ nút 1
+                        let x1 =Arrayedge[o].node1.x-333 ;
+                        let y1 =Arrayedge[o].node1.y-116 ;
+                        // tọa độ nút 2
+                        let x2 =Arrayedge[o].node2.x-333 ;
+                        let y2 =Arrayedge[o].node2.y-116 ;
+                        let radiustest;
+                        if(x2 > x1 ){
+                          radiustest =true;
+                        }else{
+                          radiustest=false
+                        }
+                        // Tính độ dài của cung
+                        let LengthEdge = Math.sqrt(Math.pow(x2-x1,2) + Math.pow(y2-y1,2))-38;
+                        edge.style.width= LengthEdge + "px";
+                        // Tọa độ của cung
+                        let x = (x2+x1+40)/2 - LengthEdge/2;
+                        let y = (y2+y1+40)/2 ;  
+                        // SET tọa độ của cung
+                        edge.style.left = x+'px' ;
+                        edge.style.top = y+'px';
+                        // Tính độ deg xoay cung     
+                        if(radiustest==true){
+                          radius = Math.atan2(x1-x2,y1-y2);
+                        }else{   
+                          radius = Math.atan2(x2-x1,y2-y1);
+                        }
+                        rot = (radius * (180/Math.PI) *-1) + 270 ;
+                        edge.style.transform = "rotate("+rot+"deg)";
+                        valueedge = document.createElement('div');
+                        valueedge.setAttribute('class','value');
+                        valueedge.innerText=Arrayedge[o].value;
+                        edge.appendChild(valueedge);               
+                      }
+                  }
+                 
+              });
+              reader.onerror = (e) => {
+                  console.error(e)
+              }
+              reader.readAsText(files[0]);
+            
+          })
+       
+         
+        </script>
+        
+     
+
+</body>
+</html>
